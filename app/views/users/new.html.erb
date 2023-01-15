@@ -1,0 +1,5 @@
+<%= form_with model: @user do |form| %>
+  <%= form.label :email %>
+  <%= form.email_field :email, required: true %>
+  <%= form.submit %>
+<% end %>
