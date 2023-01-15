@@ -3,7 +3,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      signed_id = @user.signed_id expires_in: 15.minutes, purpose: :confirmation
+      confirmation = @user.confirmations.create!
+      signed_id = confirmation.signed_id expires_in: 15.minutes, purpose: :confirmation
       redirect_to user_path(@user, params: { signed_id: signed_id }),  notice: "Confirm your account"
     else
       flash.now.alert =  @user.errors.full_messages.to_sentence
