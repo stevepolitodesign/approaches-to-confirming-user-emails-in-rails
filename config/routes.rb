@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "users#new"
+  resources :confirmations, only: :edit
   resources :users, only: [:create, :new, :show]
 end
