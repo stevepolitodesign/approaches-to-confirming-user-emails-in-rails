@@ -1,1 +1,4 @@
 <%= render partial: "user", user: @user %>
+<% if params[:signed_id] %>
+  <%= link_to "Confirm Account", edit_confirmation_path(params[:signed_id]) %>
+<% end %>

@@ -3,7 +3,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to @user, notice: "Confirm your account: "
+      signed_id = @user.signed_id
+      redirect_to user_path(@user, params: { signed_id: signed_id }),  notice: "Confirm your account"
     else
       flash.now.alert =  @user.errors.full_messages.to_sentence
       render :new, status: :unprocessable_entity
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @signed_id = params[:signed_id]
   end
 
   private
