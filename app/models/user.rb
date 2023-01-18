@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :confirmations, as: :confirmable
+  has_one :confirmation, as: :confirmable
 
   scope :unconfirmed, -> { where(confirmed_at: nil) }
 

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      confirmation = @user.confirmations.create!
+      confirmation = @user.create_confirmation!
       signed_id = confirmation.signed_id expires_in: 15.minutes, purpose: :confirmation
       redirect_to user_path(@user, params: { signed_id: signed_id }),  notice: "Confirm your account"
     else
